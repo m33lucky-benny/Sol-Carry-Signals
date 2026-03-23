@@ -1,0 +1,40 @@
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+
+    <a href="{{ '/' | relative_url }}" class="site-header__logo" aria-label="SOL Carry Signals home">
+      <div class="site-header__logo-mark" aria-hidden="true">◎</div>
+      <span class="site-header__logo-text">SOL <span>Carry</span></span>
+    </a>
+
+    <nav class="site-header__nav" aria-label="Primary navigation">
+      <a href="{{ '/' | relative_url }}"         class="site-header__nav-link {% if page.url == '/' %}active{% endif %}">Home</a>
+      <a href="{{ '/pricing/' | relative_url }}" class="site-header__nav-link {% if page.url contains 'pricing' %}active{% endif %}">Pricing</a>
+      <a href="{{ '/dashboard/' | relative_url }}" class="site-header__nav-link {% if page.url contains 'dashboard' %}active{% endif %}">Dashboard</a>
+      <a href="{{ '/legal/terms/' | relative_url }}" class="site-header__nav-link {% if page.url contains 'terms' %}active{% endif %}">Legal</a>
+    </nav>
+
+    <div class="site-header__actions">
+      <a href="{{ '/pricing/' | relative_url }}" class="btn btn--primary btn--sm">Get Access</a>
+      <button
+        class="site-header__mobile-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+  </div>
+
+  <nav class="site-header__mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="{{ '/' | relative_url }}"           class="site-header__nav-link">Home</a>
+    <a href="{{ '/pricing/' | relative_url }}"   class="site-header__nav-link">Pricing</a>
+    <a href="{{ '/dashboard/' | relative_url }}" class="site-header__nav-link">Dashboard</a>
+    <a href="{{ '/legal/terms/' | relative_url }}" class="site-header__nav-link">Terms</a>
+    <a href="{{ '/legal/privacy/' | relative_url }}" class="site-header__nav-link">Privacy</a>
+    <a href="{{ '/pricing/' | relative_url }}"   class="btn btn--primary btn--sm" style="margin-top: 0.5rem; width: fit-content;">Get Access</a>
+  </nav>
+
+</header>

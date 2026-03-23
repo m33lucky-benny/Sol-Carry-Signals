@@ -1,0 +1,378 @@
+---
+---
+// 1. Import all base variables first so every token is defined
+@import "variables";
+
+// 2. Override design tokens — these win because they come after the @import
+$color-bg:           #0a0a0a;
+$color-bg-alt:       #111111;
+$color-bg-card:      #1a1a1a;
+$color-border:       #2a2a2a;
+
+$color-primary:      #FF10F0;
+$color-secondary:    #FF10F0;
+$color-accent:       #FF10F0;
+
+$color-text:         #ffffff;
+$color-text-muted:   #aaaaaa;
+$color-text-heading: #ffffff;
+
+$color-success:      #FF10F0;
+$color-warning:      #f59e0b;
+$color-danger:       #ef4444;
+
+$font-sans:   'Courier New', Courier, monospace;
+$font-mono:   'Courier New', Courier, monospace;
+
+// 3. Import mixins (they reference the variables above)
+@import "mixins";
+
+// ─── Base reset ───────────────────────────────────────────────────────────
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: $font-sans;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-text;
+  background-color: $color-bg;
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
+}
+
+main { padding-top: $header-height; }
+
+img, svg { display: block; max-width: 100%; }
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  &:hover { text-decoration: underline; text-underline-offset: 3px; }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $color-primary;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  margin-bottom: 1rem;
+}
+
+p, ul, ol { margin-bottom: 1rem; line-height: 1.6; }
+
+code, pre { font-family: $font-mono; font-size: 0.9em; }
+
+pre {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  padding: $space-4 $space-5;
+  overflow-x: auto;
+}
+
+code {
+  background: rgba($color-primary, 0.1);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  color: $color-primary;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid $color-border;
+  margin: $space-8 0;
+}
+
+:focus-visible { outline: 2px solid $color-primary; outline-offset: 3px; }
+
+::selection { background: rgba($color-primary, 0.25); color: #fff; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: $color-bg; }
+::-webkit-scrollbar-thumb {
+  background: $color-border;
+  border-radius: 4px;
+  &:hover { background: rgba($color-primary, 0.5); }
+}
+
+// ─── Note / callout ───────────────────────────────────────────────────────
+.note {
+  background: $color-bg-card;
+  padding: 1rem;
+  border-left: 4px solid $color-primary;
+  margin-bottom: 1rem;
+}
+
+// ─── Import component/layout partials ────────────────────────────────────
+@import "layout/header";
+@import "layout/footer";
+@import "components/button";
+@import "components/card";
+@import "components/pricing-table";
+@import "components/hero";
+
+// ─── Utilities ────────────────────────────────────────────────────────────
+.container        { @include container; }
+.container-narrow { @include container-narrow; }
+
+.section {
+  @include section-padding;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: $space-12;
+
+  &__eyebrow {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $color-primary;
+    margin-bottom: $space-3;
+  }
+
+  &__title {
+    @include heading-lg;
+    margin-bottom: $space-4;
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $color-text-muted;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: $line-height-loose;
+  }
+}
+
+.text-gradient { @include text-gradient($color-primary, lighten($color-primary, 20%)); }
+.text-center   { text-align: center; }
+.text-muted    { color: $color-text-muted; }
+
+.visually-hidden { @include visually-hidden; }
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, $color-border 20%, $color-border 80%, transparent);
+  margin: $space-16 0;
+}
+
+// ─── Legal pages ──────────────────────────────────────────────────────────
+.legal-content {
+  @include container-narrow;
+  padding-top: $space-16;
+  padding-bottom: $space-24;
+
+  h1 { @include heading-lg; margin-bottom: $space-2; }
+  h2 {
+    @include heading-md;
+    margin-top: $space-10;
+    margin-bottom: $space-4;
+    padding-bottom: $space-3;
+    border-bottom: 1px solid $color-border;
+  }
+  h3 {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-text-heading;
+    margin-top: $space-6;
+    margin-bottom: $space-3;
+  }
+
+  p { color: $color-text-muted; margin-bottom: $space-4; }
+
+  ul, ol {
+    color: $color-text-muted;
+    padding-left: $space-6;
+    margin-bottom: $space-4;
+    li { margin-bottom: $space-2; line-height: $line-height-loose; }
+  }
+
+  .legal-date {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    margin-bottom: $space-10;
+    padding-bottom: $space-6;
+    border-bottom: 1px solid $color-border;
+  }
+
+  .warning-box {
+    background: rgba($color-warning, 0.06);
+    border: 1px solid rgba($color-warning, 0.2);
+    border-radius: $border-radius;
+    padding: $space-5 $space-6;
+    margin-bottom: $space-6;
+    strong { color: $color-warning; }
+    p { margin-bottom: 0; }
+  }
+}
+
+// ─── Dashboard ────────────────────────────────────────────────────────────
+.dashboard {
+  &__iframe-wrap {
+    position: relative;
+    width: 100%;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    border: 1px solid $color-border;
+    background: $color-bg-card;
+    iframe { width: 100%; height: 600px; border: none; display: block; }
+  }
+
+  &__placeholder {
+    @include flex-center;
+    flex-direction: column;
+    gap: $space-4;
+    height: 400px;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    border: 2px dashed $color-border;
+    border-radius: $border-radius-lg;
+    text-align: center;
+    padding: $space-8;
+    .placeholder-icon { font-size: 3rem; opacity: 0.3; }
+  }
+}
+
+// ─── Signals table ────────────────────────────────────────────────────────
+.signals-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead tr {
+    border-bottom: 1px solid $color-border;
+    th {
+      padding: $space-3 $space-4;
+      text-align: left;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: $color-text-muted;
+    }
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba($color-border, 0.4);
+    transition: background 150ms ease;
+    &:hover { background: rgba($color-primary, 0.04); }
+    &:last-child { border-bottom: none; }
+  }
+
+  td {
+    padding: $space-4;
+    font-size: $font-size-sm;
+    color: $color-text;
+    font-family: $font-mono;
+  }
+
+  .signal-positive { color: $color-primary; }
+  .signal-negative { color: $color-danger; }
+  .signal-neutral  { color: $color-text-muted; }
+
+  .signal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    padding: 2px $space-3;
+    border-radius: 100px;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+
+    &--long    { background: rgba($color-primary, 0.1); color: $color-primary; border: 1px solid rgba($color-primary, 0.25); }
+    &--short   { background: rgba($color-danger, 0.1);  color: $color-danger;  border: 1px solid rgba($color-danger, 0.25); }
+    &--neutral { background: rgba($color-text-muted, 0.1); color: $color-text-muted; border: 1px solid rgba($color-text-muted, 0.2); }
+  }
+}
+
+// ─── FAQ ──────────────────────────────────────────────────────────────────
+.faq {
+  &__item { border-bottom: 1px solid $color-border; &:first-child { border-top: 1px solid $color-border; } }
+
+  &__question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-4;
+    padding: $space-5 0;
+    text-align: left;
+    font-family: $font-sans;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $color-text-heading;
+    transition: color 150ms ease;
+    &:hover { color: $color-primary; }
+
+    &-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid $color-border;
+      @include flex-center;
+      flex-shrink: 0;
+      font-size: $font-size-lg;
+      color: $color-text-muted;
+      transition: all 250ms ease;
+    }
+
+    &[aria-expanded="true"] .faq__question-icon {
+      border-color: $color-primary;
+      color: $color-primary;
+      transform: rotate(45deg);
+    }
+  }
+
+  &__answer {
+    padding-bottom: $space-5;
+    font-size: $font-size-base;
+    color: $color-text-muted;
+    line-height: $line-height-loose;
+    display: none;
+    &.is-open { display: block; }
+    p:last-child { margin-bottom: 0; }
+  }
+}
+
+// ─── Steps ────────────────────────────────────────────────────────────────
+.steps {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: 1fr;
+  @include lg { grid-template-columns: repeat(4, 1fr); }
+}
+
+.step {
+  @include glass-card;
+  padding: $space-6;
+  text-align: center;
+
+  &__number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: $color-primary;
+    @include flex-center;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-bg;
+    margin: 0 auto $space-4;
+  }
+
+  &__icon  { font-size: 2rem; margin-bottom: $space-3; }
+  &__title { font-size: $font-size-base; font-weight: $font-weight-semibold; color: $color-text-heading; margin-bottom: $space-2; }
+  &__desc  { font-size: $font-size-sm; color: $color-text-muted; line-height: $line-height-loose; }
+}

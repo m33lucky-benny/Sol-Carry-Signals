@@ -1,0 +1,171 @@
+// ─── Header / Nav ──────────────────────────────────────────────────────────
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: $header-height;
+  background: rgba($color-bg, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba($color-border, 0.8);
+  transition: background $transition-normal, border-color $transition-normal;
+
+  &--scrolled {
+    background: rgba($color-bg, 0.96);
+    border-bottom-color: $color-border;
+  }
+
+  &__inner {
+    @include container;
+    @include flex-between;
+    height: 100%;
+  }
+
+  // ── Logo ──────────────────────────────────────────────────────────────────
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    text-decoration: none;
+    flex-shrink: 0;
+
+    &-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: $border-radius;
+      background: linear-gradient(135deg, $color-primary, $color-secondary);
+      @include flex-center;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-bold;
+      color: $color-bg;
+    }
+
+    &-text {
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+      color: $color-text-heading;
+      letter-spacing: -0.02em;
+
+      span {
+        @include text-gradient;
+      }
+    }
+  }
+
+  // ── Nav ───────────────────────────────────────────────────────────────────
+  &__nav {
+    display: none;
+
+    @include lg {
+      display: flex;
+      align-items: center;
+      gap: $space-8;
+    }
+  }
+
+  &__nav-link {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-text-muted;
+    text-decoration: none;
+    transition: color $transition-fast;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, $color-primary, $color-secondary);
+      border-radius: 1px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform $transition-normal;
+    }
+
+    &:hover,
+    &.active {
+      color: $color-text;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  // ── Actions ───────────────────────────────────────────────────────────────
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+  }
+
+  // ── Mobile toggle ─────────────────────────────────────────────────────────
+  &__mobile-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 26px;
+    cursor: pointer;
+    padding: $space-2;
+    background: transparent;
+    border: none;
+    border-radius: $border-radius-sm;
+
+    @include lg {
+      display: none;
+    }
+
+    span {
+      display: block;
+      height: 2px;
+      background: $color-text-muted;
+      border-radius: 1px;
+      transition: all $transition-normal;
+      transform-origin: center;
+    }
+
+    &[aria-expanded="true"] span {
+      &:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+      &:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      &:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    }
+  }
+
+  // ── Mobile menu ───────────────────────────────────────────────────────────
+  &__mobile-nav {
+    display: none;
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    background: $color-bg-card;
+    border-bottom: 1px solid $color-border;
+    padding: $space-4 $space-6;
+    flex-direction: column;
+    gap: $space-1;
+
+    &.is-open {
+      display: flex;
+    }
+
+    @include lg {
+      display: none;
+    }
+
+    .site-header__nav-link {
+      padding: $space-3 0;
+      font-size: $font-size-base;
+      border-bottom: 1px solid rgba($color-border, 0.5);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}

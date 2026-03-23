@@ -1,0 +1,228 @@
+// ─── Pricing Table Component ───────────────────────────────────────────────
+
+.pricing-grid {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: 1fr;
+  align-items: start;
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pricing-card {
+  @include glass-card;
+  padding: $space-8 $space-6;
+  position: relative;
+  transition: transform $transition-normal, box-shadow $transition-normal;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+
+  // ── Featured (Pro) ────────────────────────────────────────────────────────
+  &--featured {
+    @include gradient-border($color-primary, $color-secondary);
+    box-shadow: $shadow-glow-primary;
+
+    @include md {
+      transform: scale(1.03);
+
+      &:hover {
+        transform: scale(1.03) translateY(-4px);
+      }
+    }
+  }
+
+  // ── Badge ─────────────────────────────────────────────────────────────────
+  &__badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, $color-primary, $color-secondary);
+    color: $color-bg;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: $space-1 $space-4;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  // ── Header ────────────────────────────────────────────────────────────────
+  &__tier {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $color-text-muted;
+    margin-bottom: $space-3;
+  }
+
+  &__price {
+    margin-bottom: $space-1;
+    line-height: 1;
+  }
+
+  &__amount {
+    font-size: $font-size-5xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-heading;
+  }
+
+  &__currency {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-medium;
+    color: $color-text-muted;
+    vertical-align: super;
+    margin-right: $space-1;
+  }
+
+  &__period {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    margin-bottom: $space-6;
+  }
+
+  &__description {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    line-height: $line-height-loose;
+    margin-bottom: $space-6;
+    min-height: 3.5rem;
+  }
+
+  // ── Features ──────────────────────────────────────────────────────────────
+  &__features {
+    @include reset-list;
+    margin-bottom: $space-8;
+    flex: 1;
+  }
+
+  &__feature {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-3;
+    padding: $space-2 0;
+    font-size: $font-size-sm;
+    color: $color-text;
+    border-bottom: 1px solid rgba($color-border, 0.5);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &-check {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba($color-secondary, 0.12);
+      border: 1px solid rgba($color-secondary, 0.3);
+      @include flex-center;
+      margin-top: 1px;
+
+      svg {
+        width: 10px;
+        height: 10px;
+        fill: none;
+        stroke: $color-secondary;
+        stroke-width: 2.5;
+      }
+    }
+
+    &--locked {
+      color: $color-text-muted;
+      opacity: 0.5;
+
+      .pricing-card__feature-check {
+        background: rgba($color-border, 0.3);
+        border-color: $color-border;
+
+        svg {
+          stroke: $color-text-muted;
+        }
+      }
+    }
+  }
+
+  // ── CTA ───────────────────────────────────────────────────────────────────
+  &__cta {
+    .btn {
+      width: 100%;
+    }
+  }
+
+  &__note {
+    text-align: center;
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+    margin-top: $space-3;
+  }
+}
+
+// ─── Comparison Table (detailed pricing page) ─────────────────────────────
+.pricing-compare {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: $space-12;
+
+  th, td {
+    padding: $space-4 $space-5;
+    text-align: left;
+    border-bottom: 1px solid $color-border;
+  }
+
+  thead th {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: $color-text-muted;
+    background: $color-bg-alt;
+
+    &:not(:first-child) {
+      text-align: center;
+    }
+  }
+
+  tbody {
+    tr:hover td {
+      background: rgba($color-primary, 0.04);
+    }
+
+    td {
+      font-size: $font-size-sm;
+      color: $color-text;
+
+      &:not(:first-child) {
+        text-align: center;
+      }
+
+      &:first-child {
+        color: $color-text-muted;
+        font-weight: $font-weight-medium;
+      }
+    }
+  }
+
+  .check {
+    color: $color-secondary;
+    font-weight: $font-weight-bold;
+  }
+
+  .dash {
+    color: $color-text-muted;
+    opacity: 0.4;
+  }
+
+  @include max-md {
+    display: none;
+  }
+}

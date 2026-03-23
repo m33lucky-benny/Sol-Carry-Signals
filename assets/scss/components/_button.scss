@@ -1,0 +1,125 @@
+// ─── Button Component ──────────────────────────────────────────────────────
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  border: none;
+  border-radius: $border-radius;
+  font-family: $font-sans;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-normal;
+  white-space: nowrap;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
+  }
+
+  // ── Variants ──────────────────────────────────────────────────────────────
+  &--primary {
+    background: linear-gradient(135deg, $color-primary 0%, darken($color-primary, 10%) 100%);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba($color-primary, 0.35);
+
+    &:hover {
+      background: linear-gradient(135deg, lighten($color-primary, 5%) 0%, $color-primary 100%);
+      box-shadow: 0 6px 28px rgba($color-primary, 0.5);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 12px rgba($color-primary, 0.3);
+    }
+  }
+
+  &--secondary {
+    background: transparent;
+    color: $color-secondary;
+    border: 1px solid $color-secondary;
+    box-shadow: 0 0 0 rgba($color-secondary, 0);
+
+    &:hover {
+      background: rgba($color-secondary, 0.08);
+      box-shadow: 0 0 20px rgba($color-secondary, 0.2);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $color-text-muted;
+    border: 1px solid $color-border;
+
+    &:hover {
+      color: $color-text;
+      border-color: rgba($color-text, 0.3);
+      background: rgba(255,255,255,0.04);
+    }
+  }
+
+  &--cta {
+    background: linear-gradient(135deg, $color-secondary 0%, $color-accent 100%);
+    color: $color-bg;
+    font-weight: $font-weight-bold;
+    box-shadow: 0 4px 20px rgba($color-secondary, 0.3);
+
+    &:hover {
+      box-shadow: 0 6px 32px rgba($color-secondary, 0.45);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // ── Sizes ─────────────────────────────────────────────────────────────────
+  &--sm {
+    padding: $space-2 $space-4;
+    font-size: $font-size-sm;
+    border-radius: $border-radius-sm;
+  }
+
+  &--lg {
+    padding: $space-4 $space-8;
+    font-size: $font-size-lg;
+    border-radius: $border-radius-lg;
+  }
+
+  &--xl {
+    padding: $space-5 $space-10;
+    font-size: $font-size-xl;
+    border-radius: $border-radius-lg;
+  }
+
+  // ── States ────────────────────────────────────────────────────────────────
+  &--full {
+    width: 100%;
+  }
+
+  &[disabled],
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // ── Icon ──────────────────────────────────────────────────────────────────
+  .btn__icon {
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+  }
+}

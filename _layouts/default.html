@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  {%- assign page_title = page.title | default: site.title -%}
+  {%- assign page_desc  = page.description | default: site.description -%}
+
+  <title>{{ page_title }} — {{ site.title }}</title>
+  <meta name="description" content="{{ page_desc }}">
+
+  <!-- CSP: no inline scripts or styles; nonce required for any runtime injection -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 script-src 'self';
+                 style-src 'self';
+                 font-src 'self';
+                 img-src 'self' data: https:;
+                 connect-src 'self';
+                 frame-src 'self' https://app.sol-carry-signals.com;
+                 object-src 'none';
+                 base-uri 'self';
+                 form-action 'self' https://checkout.stripe.com;
+                 upgrade-insecure-requests;">
+
+  <!-- HSTS hint (enforced at server level, repeated here for clarity) -->
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+
+  <!-- Referrer policy -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="{{ page_title }}">
+  <meta property="og:description" content="{{ page_desc }}">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="{{ page.url | absolute_url }}">
+  <meta name="twitter:card"       content="summary_large_image">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+<body class="{{ page.body_class }}">
+
+  {% include header.html %}
+
+  <main id="main-content">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+
+  <!-- Minimal vanilla JS: header scroll class + mobile menu + FAQ accordion -->
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
+</body>
+</html>

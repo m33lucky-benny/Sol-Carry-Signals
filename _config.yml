@@ -1,0 +1,27 @@
+title: SOL Carry Signals
+description: Earn 12-30% APR on Solana. Non-custodial carry trade signals for sophisticated traders.
+baseurl: ""
+url: "https://sol-carry-signals.github.io"
+
+theme: null
+
+plugins:
+  - jekyll-sitemap
+
+sass:
+  sass_dir: assets/scss
+  style: compressed
+
+collections:
+  legal:
+    output: true
+    permalink: /legal/:name/
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - LEGAL.md
+  - LICENSE.md

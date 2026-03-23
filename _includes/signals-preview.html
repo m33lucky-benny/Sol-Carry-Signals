@@ -1,0 +1,91 @@
+<!-- Signals Preview include — swap mock data for live API fetch in JS -->
+<section class="section" id="signals">
+  <div class="container">
+
+    <div class="section-header">
+      <p class="section-header__eyebrow">Live Signals</p>
+      <h2 class="section-header__title">Sample Signal Feed</h2>
+      <p class="section-header__subtitle">
+        Real signals delivered to Pro and Premium subscribers in real time. Shown here with a 24-hour delay.
+      </p>
+    </div>
+
+    <div class="card" style="overflow:hidden; padding:0;">
+      <div style="padding: 1rem 1.5rem; border-bottom: 1px solid var(--color-border, #1e2a42); display:flex; align-items:center; justify-content:space-between;">
+        <span style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:#7a8aaa;">Signal Feed — Delayed 24h</span>
+        <span class="card__badge card__badge--success">● Live</span>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="signals-table">
+          <thead>
+            <tr>
+              <th>Pair</th>
+              <th>Signal</th>
+              <th>APR</th>
+              <th>Entry</th>
+              <th>Stop</th>
+              <th>Target</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SOL/USDC</td>
+              <td><span class="signal-badge signal-badge--long">LONG</span></td>
+              <td class="signal-positive">+24.8%</td>
+              <td>148.32</td>
+              <td>141.50</td>
+              <td>162.00</td>
+              <td>2h ago</td>
+            </tr>
+            <tr>
+              <td>mSOL/SOL</td>
+              <td><span class="signal-badge signal-badge--long">LONG</span></td>
+              <td class="signal-positive">+18.2%</td>
+              <td>1.0421</td>
+              <td>1.0380</td>
+              <td>1.0510</td>
+              <td>5h ago</td>
+            </tr>
+            <tr>
+              <td>SOL/BTC</td>
+              <td><span class="signal-badge signal-badge--neutral">WAIT</span></td>
+              <td class="signal-neutral">—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>8h ago</td>
+            </tr>
+            <tr>
+              <td>jitoSOL/SOL</td>
+              <td><span class="signal-badge signal-badge--long">LONG</span></td>
+              <td class="signal-positive">+21.5%</td>
+              <td>1.0587</td>
+              <td>1.0540</td>
+              <td>1.0670</td>
+              <td>12h ago</td>
+            </tr>
+            <tr>
+              <td>SOL/ETH</td>
+              <td><span class="signal-badge signal-badge--short">SHORT</span></td>
+              <td class="signal-positive">+14.3%</td>
+              <td>0.0412</td>
+              <td>0.0428</td>
+              <td>0.0395</td>
+              <td>18h ago</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="padding: 1rem 1.5rem; border-top: 1px solid #1e2a42; text-align:center;">
+        <p style="font-size:0.75rem; color:#7a8aaa; margin:0;">
+          Signal data shown is delayed 24 hours and for illustrative purposes only. Not financial advice.
+          <a href="{{ '/pricing/' | relative_url }}" style="color:#9945ff;">Upgrade for real-time access →</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>

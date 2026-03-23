@@ -1,0 +1,154 @@
+// ─── Card Component ────────────────────────────────────────────────────────
+
+.card {
+  @include glass-card;
+  padding: $space-6;
+  transition: transform $transition-normal, box-shadow $transition-normal,
+              border-color $transition-normal;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+    border-color: rgba($color-primary, 0.3);
+  }
+
+  // ── Header ────────────────────────────────────────────────────────────────
+  &__header {
+    margin-bottom: $space-4;
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: $border-radius;
+    background: linear-gradient(135deg, rgba($color-primary, 0.2), rgba($color-secondary, 0.1));
+    border: 1px solid rgba($color-primary, 0.3);
+    @include flex-center;
+    margin-bottom: $space-4;
+    font-size: $font-size-2xl;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: $color-text-heading;
+    margin: 0 0 $space-2;
+  }
+
+  &__subtitle {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    margin: 0;
+  }
+
+  // ── Body ──────────────────────────────────────────────────────────────────
+  &__body {
+    color: $color-text;
+    font-size: $font-size-base;
+    line-height: $line-height-loose;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    padding: $space-1 $space-3;
+    border-radius: 100px;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &--success {
+      background: rgba($color-success, 0.12);
+      color: $color-success;
+      border: 1px solid rgba($color-success, 0.25);
+    }
+
+    &--primary {
+      background: rgba($color-primary, 0.12);
+      color: $color-primary;
+      border: 1px solid rgba($color-primary, 0.25);
+    }
+
+    &--accent {
+      background: rgba($color-accent, 0.12);
+      color: $color-accent;
+      border: 1px solid rgba($color-accent, 0.25);
+    }
+  }
+
+  // ── Stat Card ─────────────────────────────────────────────────────────────
+  &--stat {
+    text-align: center;
+    padding: $space-8 $space-6;
+
+    .card__number {
+      @include text-gradient;
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      line-height: 1;
+      margin-bottom: $space-2;
+    }
+
+    .card__label {
+      font-size: $font-size-sm;
+      color: $color-text-muted;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+  }
+
+  // ── Step Card ─────────────────────────────────────────────────────────────
+  &--step {
+    position: relative;
+
+    .card__step-number {
+      position: absolute;
+      top: $space-4;
+      right: $space-4;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba($color-primary, 0.15);
+      border: 1px solid rgba($color-primary, 0.3);
+      @include flex-center;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+    }
+  }
+
+  // ── Glow variant ──────────────────────────────────────────────────────────
+  &--glow {
+    @include gradient-border;
+    box-shadow: $shadow-glow-primary;
+  }
+}
+
+// ─── Card Grid ─────────────────────────────────────────────────────────────
+.card-grid {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: 1fr;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &--4 {
+    @include lg {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &--2 {
+    @include lg {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
